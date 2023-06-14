@@ -35,9 +35,9 @@ def sign_up():
             flash('Passwords don\'t match.', category='error')      
      
         else:
-           # new_user = User(email=email, firstName=firstName, #password=generate_password_hash(password1, method='sha256'))
-            #db.session.add(new_user)
-           # db.session.commit()
+            new_user = User(email=email, firstName=firstName, #password=generate_password_hash(password1, method='sha256'))
+            db.session.add(new_user)
+            db.session.commit()
 
             flash('Account successfully created!',category='success')
             #return redirect(url_for('views.home'))
