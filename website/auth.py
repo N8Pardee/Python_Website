@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -35,11 +35,11 @@ def sign_up():
             flash('Passwords don\'t match.', category='error')      
      
         else:
-            new_user = User(email=email, firstName=firstName, #password=generate_password_hash(password1, method='sha256'))
+            new_user = User(email=email, firstName=firstName, password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
 
             flash('Account successfully created!',category='success')
-            #return redirect(url_for('views.home'))
+            return redirect(url_for('views.home'))
             
     return render_template("sign_up.html")
